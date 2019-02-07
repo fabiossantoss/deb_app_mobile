@@ -1,22 +1,15 @@
-import Colors from "color";
+import Colors from 'color';
 
 export default {
-  white: "#FFF",
-  lighter: "#EEE",
-  light: "#DDD",
-  regular: "#999",
-  dark: "#666",
-  darker: "#333",
-  black: "#000",
-  violet: "#8A2BE2",
-
-  primary: "#111",
-  primaryDark: Colors("#6550B7").darken(0.1),
-  secundary: "#222",
-  success: "#9DCA83",
-  danger: "#E37A7A",
-  green: "#6ADC00",
-  transparent: "transparent",
-  darkTransparent: "rgba(0,0,0,0.6)",
-  whiteTransparent: "rgba(255,255,255,0.3)"
+  gray: '#9DA1A9 ',
+  grayligth: '#D4D4D3',
+  graydark: '#88878B ',
+  black: '#43464C ',
+  primary: '#FCFCFC',
+  primaryDark: Colors('#FCFCFC').darken(0.3),
+  secundary: '#FAD87D',
+  secundaryligth: '#E8CE87',
+  transparent: 'transparent',
+  darkTransparent: 'rgba(0,0,0,0.6)',
+  whiteTransparent: 'rgba(255,255,255,0.3)',
 };

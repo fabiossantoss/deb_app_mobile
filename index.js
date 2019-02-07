@@ -1,10 +1,10 @@
-import { AppRegistry, YellowBox } from "react-native";
+import { AppRegistry, YellowBox } from 'react-native';
 // import App from 'index';
-import "config/Reactotronconfig";
+import 'config/Reactotronconfig';
 
-YellowBox.ignoreWarnings(["Warning:"]);
+import App from 'pages/login';
+
+YellowBox.ignoreWarnings(['Warning:']);
 console.disableYellowBox = true;
 
-import App from "./App";
-
-AppRegistry.registerComponent("deb_app_mobile", () => App);
+AppRegistry.registerComponent('deb_app_mobile', () => App);
