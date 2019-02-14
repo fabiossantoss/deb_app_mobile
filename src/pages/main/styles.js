@@ -13,21 +13,16 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: 'center',
   },
-  form: {
-    alignItems: 'stretch',
-    flex: 1,
-    justifyContent: 'center',
-  },
   logoText: {
     color: colors.green,
     fontFamily: 'Devil Breeze Bold',
     fontSize: 50,
     fontWeight: '600',
   },
-  textInput: {
-    fontSize: 16,
-    textAlign: 'center',
-    width: 150,
+  text: {
+    color: colors.green,
+    fontFamily: 'Devil Breeze Bold',
+    fontWeight: 'bold',
   },
   touchable: {
     alignItems: 'center',

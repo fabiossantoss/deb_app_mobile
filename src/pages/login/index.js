@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
 import {
-  View, StatusBar, Text, Animated, Easing, TextInput, TouchableOpacity,
+  View,
+  StatusBar,
+  Text,
+  ActivityIndicator,
+  TextInput,
+  TouchableOpacity,
 } from 'react-native';
 
 import LottieView from 'lottie-react-native';
@@ -10,20 +15,12 @@ import { colors } from 'styles';
 
 import styles from './styles';
 
-const local = require('../../lottie/cam.json');
+const local = require('../../lottie/loading.json');
 
 class Login extends Component {
   state = {
-    progress: new Animated.Value(0),
+    loading: false,
   };
-
-  componentDidMount() {
-    Animated.timing(this.state.progress, {
-      toValue: 1,
-      duration: 5000,
-      easing: Easing.linear,
-    }).start();
-  }
 
   render() {
     return (
@@ -31,18 +28,37 @@ class Login extends Component {
         <StatusBar backgroundColor={colors.green} barStyle="light-content" />
 
         <View style={styles.containerTitle}>
-          <View style={{ width: 170, height: 170 }}>
-            <LottieView source={local} progress={this.state.progress} />
-          </View>
-          <Text style={styles.logoText}>DEB</Text>
+          {!this.state.loading && <Text style={styles.logoText}>DEB</Text>}
         </View>
-        <View style={styles.viewButtons}>
-          <TouchableOpacity style={styles.touchable}>
-            <Text style={styles.text}>ENTRAR</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.touchable}>
-            <Text style={styles.text}>CADASTRAR</Text>
-          </TouchableOpacity>
+
+        {!this.state.loading && (
+          <View style={styles.form}>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Usuário"
+              placeholderTextColor={colors.green}
+            />
+            <TextInput
+              style={styles.textInput}
+              placeholder="Senha"
+              secureTextEntry
+              placeholderTextColor={colors.green}
+            />
+          </View>
+        )}
+        <View style={{ flex: 1 }}>
+          {this.state.loading ? (
+            <ActivityIndicator size="large" color={colors.green} />
+          ) : (
+            <View style={styles.viewButtons}>
+              <TouchableOpacity
+                onPress={() => this.setState({ loading: true, loop: true })}
+                style={styles.touchable}
+              >
+                <Text style={styles.text}>ENTRAR</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     );

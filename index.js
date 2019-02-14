@@ -2,7 +2,7 @@ import { AppRegistry, YellowBox } from 'react-native';
 // import App from 'index';
 import 'config/Reactotronconfig';
 
-import App from 'pages/login';
+import App from './src';
 
 YellowBox.ignoreWarnings(['Warning:']);
 console.disableYellowBox = true;
