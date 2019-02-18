@@ -2,14 +2,14 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   error: '',
-  loading: '',
+  loading: false,
+  token: '',
+  image: '',
 };
 
-const AuthReducer = (state = INITIAL_STATE, action) => {
+export default function auth(state = INITIAL_STATE, action) {
   switch (action.type) {
     default:
       return state;
   }
-};
-
-export default AuthReducer;
+}
