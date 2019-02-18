@@ -1,10 +1,11 @@
 import Reactotron from 'reactotron-react-native';
+import { reactotronRedux } from 'reactotron-redux';
+import sagaPlugin from 'reactotron-redux-saga';
 
-const tron = Reactotron.configure({
-  name: 'Registro Condominos',
-  host: '192.168.100.12',
-})
+const tron = Reactotron.configure({ name: 'MusicYour', host: '192.168.90.10' })
   .useReactNative()
+  .use(reactotronRedux())
+  .use(sagaPlugin())
   .connect();
 
 console.tron = tron;

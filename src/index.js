@@ -1,6 +1,9 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { AsyncStorage } from 'react-native';
 import { createAppContainer } from 'react-navigation';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import createNavigator from './routes';
 
@@ -28,9 +31,11 @@ export default class App extends Component {
     const ContainerRoutes = createAppContainer(Routes);
 
     return (
-      <Fragment>
+      <Provider store={store}>
+        {/* <Fragment> */}
         <ContainerRoutes />
-      </Fragment>
+        {/* </Fragment> */}
+      </Provider>
     );
   }
 }
