@@ -1,18 +1,18 @@
 import { createStackNavigator } from 'react-navigation';
 import { colors } from 'styles';
 
-import Main from 'pages/main';
+import Home from 'pages/home';
 import Login from 'pages/login';
-import Preload from 'pages/preload';
+import SignUp from 'pages/signup';
 
 const createNavigator = (isLogged = false) => createStackNavigator(
   {
-    // Login: { screen: Login },
-    // Main: { screen: Main },
-    Preload: { screen: Preload },
+    Login: { screen: Login },
+    Home: { screen: Home },
+    SignUp: { screen: SignUp },
   },
   {
-    // initialRouteName: isLogged ? 'Login' : 'Main',
+    initialRouteName: isLogged ? 'Home' : 'Login',
     navigationOptions: {
       headerTintColor: colors.green,
       headerBackTitle: null,

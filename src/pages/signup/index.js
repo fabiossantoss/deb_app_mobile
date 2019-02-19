@@ -16,7 +16,7 @@ import styles from './styles';
 
 const bg = require('../../assets/bg.png');
 
-class Login extends Component {
+class SignUp extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -26,7 +26,7 @@ class Login extends Component {
   };
 
   signUp = () => {
-    this.props.navigation.navigate('SignUp');
+    this.props.navigation.goBack();
   };
 
   render() {
@@ -42,6 +42,12 @@ class Login extends Component {
         />
         <TextInput
           style={styles.textInput}
+          placeholder="Email"
+          placeholderTextColor={colors.white}
+          underlineColorAndroid="transparent"
+        />
+        <TextInput
+          style={styles.textInput}
           placeholder="Senha"
           secureTextEntry
           placeholderTextColor={colors.white}
@@ -51,15 +57,15 @@ class Login extends Component {
           onPress={() => this.setState({ loading: true, loop: true })}
           style={styles.touchable}
         >
-          <Text style={styles.textTouchable}>ENTRAR</Text>
+          <Text style={styles.textTouchable}>CADASTRAR</Text>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={this.signUp} style={styles.touchableSignUp}>
-          <Text style={styles.textTouchable}>Ainda não tem cadastro? clique aqui.</Text>
+          <Text style={styles.textTouchable}>Tem cadastro? clique aqui.</Text>
         </TouchableOpacity>
       </ImageBackground>
     );
   }
 }
 
-export default Login;
+export default SignUp;
