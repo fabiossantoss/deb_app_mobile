@@ -1,0 +1,120 @@
+import { call, put } from 'redux-saga/effects';
+import api from 'services/api';
+import { Creators as LoginActions } from 'store/ducks/auth';
+import { AsyncStorage } from 'react-native';
+
+export function* login(action) {
+  try {
+    const response = yield call(api.post, '/session', {
+      email: action.payload.email,
+      password: action.payload.password,
+    });
+
+    if (response.data.token && response.data.type === 'bearer') {
+      yield put(
+        LoginActions.loginSuccess(
+          response.data.user.username,
+          response.data.user.email,
+          response.data.token,
+          response.data.user.id,
+        ),
+      );
+
+      // grava no banco local as informações de login
+
+      yield AsyncStorage.setItem('@DebApp:username', response.data.user.username);
+      yield AsyncStorage.setItem('@DebApp:token', response.data.token);
+      yield AsyncStorage.setItem('@DebApp:email', String(response.data.user.email));
+      yield AsyncStorage.setItem('@DebApp:id', String(response.data.user.id));
+    }
+  } catch (error) {
+    let messageText = 'Não foi possível se conectar, verifique as informações de entrada, ou se há conexão com a internet!';
+
+    if (error.response !== undefined) {
+      if (error.response.data[0].field !== undefined && error.response.data[0].field === 'email') {
+        messageText = 'email inválido';
+      } else if (
+        error.response.data[0].field !== undefined
+        && error.response.data[0].field === 'password'
+      ) {
+        messageText = 'senha inválida';
+      }
+    }
+    alert(messageText);
+
+    yield put(LoginActions.loginError(messageText));
+    yield AsyncStorage.removeItem('@DebApp:username');
+    yield AsyncStorage.removeItem('@DebApp:token');
+    yield AsyncStorage.removeItem('@DebApp:email');
+    yield AsyncStorage.removeItem('@DebApp:id');
+  }
+}
+
+// export function* forgot(action) {
+//   try {
+//     const response = yield call(api.post, '/password/forgot', {
+//       email: action.payload.email,
+//     });
+
+//     if (response.data.result !== undefined && response.data.result) {
+//       const messageText = `Código de alteração de senha enviado para o e-mail : ${
+//         action.payload.email
+//       }`;
+//       alert(messageText);
+//       // showMessage({
+//       //   message: messageText,
+//       //   type: 'success',
+//       //   duration: 3000,
+//       // });
+//     }
+//   } catch (error) {
+//     let messageText = 'Não foi possível se conectar, verifique as informações de entrada, ou se há conexão com a internet!';
+//     console.tron.log(error);
+//     if (error.response !== undefined) {
+//       if (error.response.data.message !== undefined) {
+//         messageText = error.response.data.message;
+//       }
+//     }
+
+//     alert(messageText);
+
+//     // showMessage({
+//     //   message: messageText,
+//     //   type: 'danger',
+//     //   duration: 3000,
+//     // });
+
+//     yield AsyncStorage.removeItem('@DebApp:username');
+//     yield AsyncStorage.removeItem('@DebApp:token');
+//     yield AsyncStorage.removeItem('@DebApp:usertype');
+//   }
+// }
+
+export function* newUser(action) {
+  try {
+    const response = yield call(api.post, '/users', {
+      username: action.payload.username,
+      email: action.payload.email,
+      password: action.payload.password,
+    });
+
+    if (response.data.username && response.data.email && response.data.id) {
+      yield put(
+        LoginActions.newUserSuccess(response.data.username, response.data.email, response.data.id),
+      );
+
+      yield AsyncStorage.setItem('@DebApp:username', response.data.username);
+      yield AsyncStorage.setItem('@DebApp:email', response.data.email);
+      yield AsyncStorage.setItem('@DebApp:id', String(response.data.id));
+    }
+  } catch (error) {
+    const messageText = 'Error ao cadastrar o usuário!';
+
+    alert(messageText);
+
+    yield put(LoginActions.newUserError(error));
+    yield AsyncStorage.removeItem('@DebApp:username');
+    yield AsyncStorage.removeItem('@DebApp:email');
+    yield AsyncStorage.removeItem('@DebApp:id');
+  }
+}
