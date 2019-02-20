@@ -22,7 +22,6 @@ const INITIAL_STATE = {
   password: '',
   error: '',
   loading: false,
-  new_user_status: '',
   token: '',
   image: '',
   id: '',
@@ -44,29 +43,18 @@ export default function auth(state = INITIAL_STATE, action) {
         ...state,
         loading: true,
         error: '',
-        new_user_status: 0,
-      };
-
-    case Types.SET_NEW_USER_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        error: '',
-        new_user_status: 1,
       };
     case Types.SET_NEW_USER_ERROR:
       return {
         ...state,
         loading: false,
         error: action.payload.error,
-        new_user_status: 2,
       };
     case Types.SET_LOGIN_REQUEST:
       return {
         ...state,
         loading: true,
         error: '',
-        new_user_status: '',
       };
     case Types.SET_LOGIN_SUCCESS:
       return {
@@ -75,7 +63,14 @@ export default function auth(state = INITIAL_STATE, action) {
         email: action.payload.email,
         token: action.payload.token,
         id: action.payload.id,
+        image: action.payload.url,
         error: '',
+        loading: false,
+      };
+    case Types.SET_LOGIN_ERROR:
+      return {
+        ...state,
+        error: action.payload.error,
         loading: false,
       };
     default:
@@ -128,29 +123,27 @@ export const Creators = {
       password,
     },
   }),
-  newUserSuccess: () => ({
-    type: Types.SET_NEW_USER_SUCCESS,
-  }),
   newUserError: error => ({
     type: Types.SET_NEW_USER_ERROR,
     payload: {
       error,
     },
   }),
-  loginRequest: (email, passowrd) => ({
+  loginRequest: (email, password) => ({
     type: Types.SET_LOGIN_REQUEST,
     payload: {
       email,
-      passowrd,
+      password,
     },
   }),
-  loginSuccess: (username, email, token, id) => ({
+  loginSuccess: (username, email, token, id, url) => ({
     type: Types.SET_LOGIN_SUCCESS,
     payload: {
       username,
       email,
       token,
       id,
+      url,
     },
   }),
   loginError: error => ({

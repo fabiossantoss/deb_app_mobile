@@ -10,22 +10,31 @@ export function* login(action) {
       password: action.payload.password,
     });
 
-    if (response.data.token && response.data.type === 'bearer') {
+    if (response.data.token && response.data.type && response.data.type === 'bearer') {
+
+      let fileUrl = '';
+      if (response.data.user.file.length > 0) {
+        fileUrl = response.data.user.file[0].url;
+      }
+
+      console.tron.log(response.data);
       yield put(
         LoginActions.loginSuccess(
           response.data.user.username,
           response.data.user.email,
           response.data.token,
           response.data.user.id,
+          fileUrl,
         ),
       );
 
       // grava no banco local as informações de login
 
-      yield AsyncStorage.setItem('@DebApp:username', response.data.user.username);
-      yield AsyncStorage.setItem('@DebApp:token', response.data.token);
-      yield AsyncStorage.setItem('@DebApp:email', String(response.data.user.email));
-      yield AsyncStorage.setItem('@DebApp:id', String(response.data.user.id));
+      yield response.data.user.username && AsyncStorage.setItem('@DebApp:username', response.data.user.username);
+      yield response.data.token && AsyncStorage.setItem('@DebApp:token', response.data.token);
+      yield response.data.user.email && AsyncStorage.setItem('@DebApp:email', response.data.user.email);
+      yield String(response.data.user.id) && AsyncStorage.setItem('@DebApp:id', String(response.data.user.id));
+      yield fileUrl && AsyncStorage.setItem('@DebApp:image', fileUrl);
     }
   } catch (error) {
     let messageText = 'Não foi possível se conectar, verifique as informações de entrada, ou se há conexão com a internet!';
@@ -47,6 +56,7 @@ export function* login(action) {
     yield AsyncStorage.removeItem('@DebApp:token');
     yield AsyncStorage.removeItem('@DebApp:email');
     yield AsyncStorage.removeItem('@DebApp:id');
+    yield AsyncStorage.removeItem('@DebApp:image');
   }
 }
 
@@ -98,14 +108,32 @@ export function* newUser(action) {
       password: action.payload.password,
     });
 
-    if (response.data.username && response.data.email && response.data.id) {
+
+    if (response.data.token && response.data.type && response.data.type === 'bearer') {
+
+      let fileUrl = '';
+      if (response.data.user.file.length > 0) {
+        fileUrl = response.data.user.file[0].url;
+      }
+
+      console.tron.log(response.data);
       yield put(
-        LoginActions.newUserSuccess(response.data.username, response.data.email, response.data.id),
+        LoginActions.loginSuccess(
+          response.data.user.username,
+          response.data.user.email,
+          response.data.token,
+          response.data.user.id,
+          fileUrl,
+        ),
       );
 
-      yield AsyncStorage.setItem('@DebApp:username', response.data.username);
-      yield AsyncStorage.setItem('@DebApp:email', response.data.email);
-      yield AsyncStorage.setItem('@DebApp:id', String(response.data.id));
+      // grava no banco local as informações de login
+
+      yield response.data.user.username && AsyncStorage.setItem('@DebApp:username', response.data.user.username);
+      yield response.data.token && AsyncStorage.setItem('@DebApp:token', response.data.token);
+      yield response.data.user.email && AsyncStorage.setItem('@DebApp:email', response.data.user.email);
+      yield String(response.data.user.id) && AsyncStorage.setItem('@DebApp:id', String(response.data.user.id));
+      yield fileUrl && AsyncStorage.setItem('@DebApp:image', fileUrl);
     }
   } catch (error) {
     const messageText = 'Error ao cadastrar o usuário!';

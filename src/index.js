@@ -14,7 +14,16 @@ export default class App extends Component {
   };
 
   async componentDidMount() {
+    // AsyncStorage.clear();
+
     const token = await AsyncStorage.getItem('@DebApp:token');
+
+    // console.tron.log(await AsyncStorage.getItem('@DebApp:token'));
+    // console.tron.log(await AsyncStorage.getItem('@DebApp:email'));
+    // console.tron.log(await AsyncStorage.getItem('@DebApp:id'));
+    // console.tron.log(await AsyncStorage.getItem('@DebApp:image'));
+    // console.tron.log(await AsyncStorage.getItem('@DebApp:username'));
+
     this.appLoaded(token);
   }
 

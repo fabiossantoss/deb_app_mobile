@@ -1,18 +1,19 @@
 import { createStackNavigator } from 'react-navigation';
 import { colors } from 'styles';
 
-import Home from 'pages/home';
-import Login from 'pages/login';
+import TabNavigator from 'pages/tabnavigator';
+import SignIn from 'pages/signin';
+// import Home from 'pages/home';
 import SignUp from 'pages/signup';
 
 const createNavigator = (isLogged = false) => createStackNavigator(
   {
-    Login: { screen: Login },
-    Home: { screen: Home },
+    SignIn: { screen: SignIn },
+    TabNavigator: { screen: TabNavigator },
     SignUp: { screen: SignUp },
   },
   {
-    initialRouteName: isLogged ? 'Home' : 'Login',
+    initialRouteName: isLogged ? 'TabNavigator' : 'SignIn',
     navigationOptions: {
       headerTintColor: colors.green,
       headerBackTitle: null,
