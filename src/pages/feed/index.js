@@ -51,10 +51,10 @@ class Feed extends Component {
         </View>}
 
         {(!loading && posts.length > 0 ) &&
-          <FlatList 
+          <FlatList
             data={posts}
             keyExtractor={(item) => item.id}
-            renderItem={({item})=> <PostItem />}
+            renderItem={({item})=> <PostItem data={item} nav={this.props.navigation} />}
             style={styles.posts}
           />
           
