@@ -21,8 +21,7 @@ const createNavigator = (isLogged = false) => createStackNavigator(
         header: null,      
       },
       tabBarOptions: {
-        showIcon: true,
-        showLabel: true,
+        showLabel: false,
         activeTintColor: colors.white,
         inactiveBackgroundColor: colors.secundaryDark,
         style: { backgroundColor: colors.green },

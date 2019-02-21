@@ -11,7 +11,7 @@ import styles from './styles';
 
 class Explore extends Component {
   static navigationOptions = {
-    TabBarIcon: ({ tintColor }) => <Icon name="car" size={20} color="#000" />,
+    tabBarIcon: ({ tintColor }) => <Icon name="search" size={20} color={tintColor} />,
   };
 
   render() {
