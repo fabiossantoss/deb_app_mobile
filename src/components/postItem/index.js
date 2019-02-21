@@ -12,7 +12,7 @@ const PostItem = ({ data, nav }) => {
     title = data.pessoa.name;
     imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
     commentsCount = data.comments.length;
-  } else {
+  } else if (data.automobile) {
     title = data.automobile.title;
     imgBoddy = data.automobile.files.length > 0 ? data.automobile.files[0].url : '';
     commentsCount = data.comments.length;
