@@ -14,4 +14,5 @@ export default {
   transparent: 'transparent',
   darkTransparent: 'rgba(0,0,0,0.6)',
   whiteTransparent: 'rgba(255,255,255,0.3)',
+  fake: '#CCC',
 };

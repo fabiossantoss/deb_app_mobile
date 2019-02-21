@@ -8,4 +8,5 @@ export default {
   baseRadius: 3,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
+  opacityfake: 0.7,
 };

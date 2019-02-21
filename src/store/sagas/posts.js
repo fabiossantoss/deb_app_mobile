@@ -5,8 +5,8 @@ import { Creators as PostsActions } from 'store/ducks/posts';
 export function* getPosts(action) {
   try {
     const response = yield call(api.get, '/posts');
-    console.tron.log(response);
+    yield put(PostsActions.getPostsSuccess(response.data));
   } catch (error) {
-    console.tron.log(error);
+    yield put(PostsActions.getPostsError(error.message));
   }
 }

@@ -4,9 +4,7 @@ import { colors, metrics } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
   },
   containerTitle: {
     alignItems: 'center',
@@ -19,11 +17,20 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: '600',
   },
+  postNull: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  posts: {
+    flex: 1,
+  },
   text: {
     color: colors.green,
     fontFamily: 'Devil Breeze Bold',
     fontWeight: 'bold',
   },
+
   touchable: {
     alignItems: 'center',
     backgroundColor: colors.transparent,
@@ -37,6 +44,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: metrics.basePadding,
     width: 150,
   },
+
   viewButtons: {
     alignItems: 'flex-end',
     flex: 1,
