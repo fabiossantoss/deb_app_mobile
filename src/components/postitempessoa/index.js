@@ -3,22 +3,9 @@ import { View, Image, Text } from 'react-native';
 
 import styles from './styles';
 
-const PostItem = ({ data, nav }) => {
-  const titleProfile = data.user.username;
-  let titlePost = data.user.username;
+const PostItemPessoa = ({ data, nav }) => {
   const avatarProfileUrl = data.user.file.length > 0 ? data.user.file[0].url : '';
-  let imgBoddy = '';
-  let commentsCount = 0;
-
-  if (data.pessoa) {
-    titlePost = data.user.username;
-    imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
-    commentsCount = data.comments.length;
-  } else if (data.automobile) {
-    titlePost = data.automobile.title;
-    imgBoddy = data.automobile.files.length > 0 ? data.automobile.files[0].url : '';
-    commentsCount = data.comments.length;
-  }
+  const imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
 
   return (
     <View style={styles.container}>
@@ -27,11 +14,15 @@ const PostItem = ({ data, nav }) => {
           <Image style={styles.imgAvatar} source={{ uri: avatarProfileUrl }} />
         </View>
         <View style={styles.username}>
-          <Text>{titleProfile}</Text>
+          <Text style={styles.txtUserName}>{data.user.username}</Text>
         </View>
         <View style={styles.dateArea}>
           <View style={styles.postdate} />
         </View>
+      </View>
+      <View style={styles.descriptionArea}>
+        <Text>{data.title}</Text>
+        <Text>{data.description}</Text>
       </View>
       <View style={styles.feedBody}>
         <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
@@ -41,11 +32,11 @@ const PostItem = ({ data, nav }) => {
           <Text>{'<3'}</Text>
         </View>
         <View style={styles.commentContainer}>
-          <Text>{commentsCount}</Text>
+          <Text>{data.comments.length}</Text>
         </View>
       </View>
     </View>
   );
 };
 
-export default PostItem;
+export default PostItemPessoa;

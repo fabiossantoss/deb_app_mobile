@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Creators as PostActions } from 'store/ducks/posts';
 
 import FeedFake from 'components/postFake';
-import PostItem from 'components/postItem';
+import PostItemPessoa from 'components/postitempessoa';
  
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -15,9 +15,9 @@ import { colors } from 'styles';
 
 import styles from './styles';
 
-class Feed extends Component {
+class PostsPessoas extends Component {
   static navigationOptions = {
-    tabBarIcon: ({ tintColor }) => <Icon name="home" size={20} color={tintColor} />,
+    tabBarIcon: ({ tintColor }) => <Icon name="users" size={20} color={tintColor} />,
     title: 'DebApp',
     headerStyle: {
       backgroundColor: colors.secundary,
@@ -30,7 +30,8 @@ class Feed extends Component {
   };
 
   componentDidMount() {
-    this.props.getPosts();
+    console.tron.log('passei no pessoas');
+    this.props.getPostsPessoas();
   }
 
   render() {
@@ -54,7 +55,7 @@ class Feed extends Component {
           <FlatList
             data={posts}
             keyExtractor={(item) => item.id}
-            renderItem={({item})=> <PostItem data={item} nav={this.props.navigation} />}
+            renderItem={({item})=> <PostItemPessoa data={item} nav={this.props.navigation} />}
             style={styles.posts}
           />
           
@@ -65,7 +66,7 @@ class Feed extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.posts,
+  posts: state.posts.posts_pessoas,
   email: state.auth.email,
   loading: state.posts.loading,
 });
@@ -75,4 +76,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(PostActions, dispatch)
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Feed);
+)(PostsPessoas);

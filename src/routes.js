@@ -3,16 +3,20 @@ import { colors } from 'styles';
 
 
 import SignIn from 'pages/signin';
-import Home from 'pages/home';
+// import Home from 'pages/home';
 import Explore from 'pages/explore';
 import Profile from 'pages/profile';
 import SignUp from 'pages/signup';
+import PostsPessoas from 'pages/postspessoas';
+import PostsAutomobile from 'pages/postsautomobiles';
+
 
 const createNavigator = (isLogged = false) => createStackNavigator(
   {
     SignIn: { screen: SignIn },
     TabNavigator: createBottomTabNavigator({
-      Home: { screen: Home },
+      PostsPessoas: { screen: PostsPessoas },
+      PostsAutomobile: { screen: PostsAutomobile },
       Explore: { screen: Explore },
       Profile: { screen: Profile },
     },
