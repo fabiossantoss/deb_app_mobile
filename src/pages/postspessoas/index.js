@@ -38,7 +38,7 @@ class PostsPessoas extends Component {
     const { loading , posts } = this.props;
     return (
       <View style={styles.container}>
-      <StatusBar backgroundColor={colors.green} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.green} barStyle="light-content" />
         {loading && (
           <View>
             <FeedFake />
@@ -57,8 +57,7 @@ class PostsPessoas extends Component {
             keyExtractor={(item) => item.id}
             renderItem={({item})=> <PostItemPessoa data={item} nav={this.props.navigation} />}
             style={styles.posts}
-          />
-          
+          />          
         }
       </View>
     );

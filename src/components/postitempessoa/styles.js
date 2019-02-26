@@ -27,12 +27,11 @@ const styles = StyleSheet.create({
   },
   descriptionArea: {
     flexDirection: 'column',
-    height: 40,
+    height: 80,
     justifyContent: 'center',
     marginLeft: 10,
   },
   feedBody: {
-    backgroundColor: colors.fake,
     flex: 1,
   },
   feedFooter: {
@@ -50,14 +49,18 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imgBoddy: {
-    height: 300,
+    height: 250,
     width: '100%',
   },
-  postdate: {
-    backgroundColor: colors.fake,
+  iconClock: {
     height: 15,
+    width: 15,
+  },
+  postdate: {
+    flexDirection: 'row',
+    height: 20,
     marginRight: 10,
-    width: 80,
+    justifyContent: 'center',
   },
   username: {
     height: 30,
@@ -68,6 +71,24 @@ const styles = StyleSheet.create({
   txtUserName: {
     fontSize: 23,
     fontWeight: '500',
+  },
+  txtName: {
+    fontSize: 23,
+    fontWeight: '500',
+  },
+  bodyDescription: {
+    flexDirection: 'row',
+  },
+  txtBodyTitleDescription: {
+    color: colors.dark,
+    fontSize: 17,
+    fontWeight: 'bold',
+    width: 100,
+  },
+  txtBodyDescription: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });
 
