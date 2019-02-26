@@ -27,9 +27,13 @@ const styles = StyleSheet.create({
   },
   descriptionArea: {
     flexDirection: 'column',
-    height: 80,
+    height: 60,
     justifyContent: 'center',
-    marginLeft: 10,
+    marginHorizontal: 10,
+    marginBottom: 5,
+    backgroundColor: colors.darkTransparent,
+
+    borderRadius: 10,
   },
   feedBody: {
     flex: 1,
@@ -66,27 +70,42 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: 'center',
     marginLeft: 10,
-    width: 150,
+    width: 250,
   },
   txtUserName: {
     fontSize: 23,
-    fontWeight: '500',
+    fontWeight: '300',
+    fontFamily: 'Roboto',
+  },
+  viewName: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: 30,
+    width: '100%',
+    flexDirection: 'row',
   },
   txtName: {
     fontSize: 23,
     fontWeight: '500',
+    color: colors.green,
+    marginLeft: 10,
+  },
+  txtAge: {
+    fontSize: 15,
+    fontWeight: '500',
   },
   bodyDescription: {
     flexDirection: 'row',
+    flex: 1,
   },
   txtBodyTitleDescription: {
-    color: colors.dark,
+    color: colors.white,
     fontSize: 17,
     fontWeight: 'bold',
-    width: 100,
+    width: 50,
   },
   txtBodyDescription: {
-    color: colors.primary,
+    color: colors.white,
     fontSize: 15,
     fontWeight: 'bold',
   },

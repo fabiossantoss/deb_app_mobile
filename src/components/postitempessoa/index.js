@@ -12,7 +12,20 @@ moment.locale('pt-BR');
 const PostItemPessoa = ({ data, nav }) => {
   const avatarProfileUrl = data.user.file.length > 0 ? data.user.file[0].url : '';
   const imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
-  const date = moment(data.created_at).format('DD/MM/YYYY h:mm');
+  const age = `${moment().diff(data.pessoa.birth_date, 'years')} anos`;
+  const dateInfo = [
+    {
+      title: 'Local',
+      content: `${data.pessoa.city}/${data.pessoa.uf}  ${moment(
+        data.pessoa.date_disappearance,
+      ).format('DD/MM/YYYY')}`,
+    },
+    {
+      title: 'Idade',
+      content: age,
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.feedHeader}>
@@ -30,21 +43,15 @@ const PostItemPessoa = ({ data, nav }) => {
         </View>
       </View>
       <View style={styles.descriptionArea}>
+        {dateInfo.map(item => (
+          <View style={styles.bodyDescription}>
+            <Text style={styles.txtBodyTitleDescription}>{item.title}</Text>
+            <Text style={styles.txtBodyDescription}>{item.content}</Text>
+          </View>
+        ))}
+      </View>
+      <View style={styles.viewName}>
         <Text style={styles.txtName}>{data.pessoa.name}</Text>
-
-        <View style={styles.bodyDescription}>
-          <Text style={styles.txtBodyTitleDescription}>Nascimento</Text>
-          <Text style={styles.txtBodyDescription}>
-            {moment(data.pessoa.birth_date).format('DD/MM/YYYY')}
-          </Text>
-        </View>
-        <View style={styles.bodyDescription}>
-          <Text style={styles.txtBodyTitleDescription}>Data</Text>
-          <Text style={styles.txtBodyDescription}>
-            {moment(data.pessoa.date_disappearance).format('DD/MM/YYYY')}
-          </Text>
-        </View>
-        <Text>{data.pessoa.description}</Text>
       </View>
       <View style={styles.feedBody}>
         <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
