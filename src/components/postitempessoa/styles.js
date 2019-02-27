@@ -27,12 +27,15 @@ const styles = StyleSheet.create({
   },
   descriptionArea: {
     flexDirection: 'column',
-    height: 40,
+    height: 60,
     justifyContent: 'center',
-    marginLeft: 10,
+    marginHorizontal: 10,
+    marginBottom: 5,
+    backgroundColor: colors.darkTransparent,
+
+    borderRadius: 10,
   },
   feedBody: {
-    backgroundColor: colors.fake,
     flex: 1,
   },
   feedFooter: {
@@ -50,24 +53,61 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imgBoddy: {
-    height: 300,
+    height: 250,
     width: '100%',
   },
-  postdate: {
-    backgroundColor: colors.fake,
+  iconClock: {
     height: 15,
+    width: 15,
+  },
+  postdate: {
+    flexDirection: 'row',
+    height: 20,
     marginRight: 10,
-    width: 80,
+    justifyContent: 'center',
   },
   username: {
     height: 30,
     justifyContent: 'center',
     marginLeft: 10,
-    width: 150,
+    width: 250,
   },
   txtUserName: {
     fontSize: 23,
+    fontWeight: '300',
+    fontFamily: 'Roboto',
+  },
+  viewName: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: 30,
+    width: '100%',
+    flexDirection: 'row',
+  },
+  txtName: {
+    fontSize: 23,
     fontWeight: '500',
+    color: colors.green,
+    marginLeft: 10,
+  },
+  txtAge: {
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  bodyDescription: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  txtBodyTitleDescription: {
+    color: colors.white,
+    fontSize: 17,
+    fontWeight: 'bold',
+    width: 50,
+  },
+  txtBodyDescription: {
+    color: colors.white,
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });
 
