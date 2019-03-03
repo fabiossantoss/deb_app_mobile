@@ -37,6 +37,8 @@ export default function auth(state = INITIAL_STATE, action) {
 
     case Types.CHANGE_PASSWORD:
       return { ...state, password: action.payload.password };
+    case Types.CHANGE_LOADING:
+      return { ...state, loading: action.payload.loading };
 
     case Types.SET_NEW_USER:
       return {
@@ -150,6 +152,12 @@ export const Creators = {
     type: Types.SET_LOGIN_ERROR,
     payload: {
       error,
+    },
+  }),
+  changeLoading: status => ({
+    type: Types.CHANGE_LOADING,
+    payload: {
+      status,
     },
   }),
 };

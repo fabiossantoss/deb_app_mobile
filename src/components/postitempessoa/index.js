@@ -12,16 +12,18 @@ moment.locale('pt-BR');
 const PostItemPessoa = ({ data, nav }) => {
   const avatarProfileUrl = data.user.file.length > 0 ? data.user.file[0].url : '';
   const imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
-  const age = `${moment().diff(data.pessoa.birth_date, 'years')} anos`;
+  const age = `${moment().diff(data.pessoa.birth_date, 'years')} ANOS`;
   const dateInfo = [
     {
-      title: 'Local',
-      content: `${data.pessoa.city}/${data.pessoa.uf}  ${moment(
-        data.pessoa.date_disappearance,
-      ).format('DD/MM/YYYY')}`,
+      title: 'LOCAL',
+      content: `${data.pessoa.city} - ${data.pessoa.uf}`.toLocaleUpperCase(),
     },
     {
-      title: 'Idade',
+      title: 'DATA',
+      content: moment(data.pessoa.date_disappearance).format('DD/MM/YYYY'),
+    },
+    {
+      title: 'IDADE',
       content: age,
     },
   ];
@@ -43,6 +45,7 @@ const PostItemPessoa = ({ data, nav }) => {
         </View>
       </View>
       <View style={styles.descriptionArea}>
+        <Text style={styles.txtInfo}>INFORMAÇÕES DO DESAPARECIMENTO</Text>
         {dateInfo.map(item => (
           <View style={styles.bodyDescription}>
             <Text style={styles.txtBodyTitleDescription}>{item.title}</Text>
@@ -54,7 +57,7 @@ const PostItemPessoa = ({ data, nav }) => {
         <Text style={styles.txtName}>{data.pessoa.name}</Text>
       </View>
       <View style={styles.feedBody}>
-        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
+        <Image style={styles.imgBoddy} resizeMode="contain" source={{ uri: imgBoddy }} />
       </View>
       <View style={styles.feedFooter}>
         <View style={styles.alertContainer}>

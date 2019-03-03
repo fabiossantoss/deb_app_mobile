@@ -49,7 +49,8 @@ class SignIn extends Component {
     await this.props.loginRequest(this.props.email, this.props.password);
   }
 
-  signUp = () => {
+  signUp = async () => {
+    await this.props.changeLoading(false);
     this.props.navigation.navigate('SignUp');
   };
 

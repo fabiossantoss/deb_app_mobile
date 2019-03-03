@@ -1,3 +1,4 @@
+/* eslint-disable react-native/sort-styles */
 import { StyleSheet } from 'react-native';
 
 import { colors, metrics } from 'styles';
@@ -27,13 +28,13 @@ const styles = StyleSheet.create({
   },
   descriptionArea: {
     flexDirection: 'column',
-    height: 60,
+    height: 70,
     justifyContent: 'center',
     marginHorizontal: 10,
     marginBottom: 5,
-    backgroundColor: colors.darkTransparent,
-
-    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: colors.primary,
+    padding: 5,
   },
   feedBody: {
     flex: 1,
@@ -73,21 +74,27 @@ const styles = StyleSheet.create({
     width: 250,
   },
   txtUserName: {
-    fontSize: 23,
-    fontWeight: '300',
     fontFamily: 'Roboto',
+    fontSize: 23,
+    fontWeight: '100',
+  },
+  txtInfo: {
+    flex: 1,
+    textAlign: 'center',
+    fontFamily: 'Roboto',
+    fontSize: 11,
+    fontWeight: '100',
   },
   viewName: {
-    justifyContent: 'flex-start',
     alignItems: 'center',
-    height: 30,
-    width: '100%',
     flexDirection: 'row',
+    height: 30,
+    justifyContent: 'flex-start',
+    width: '100%',
   },
   txtName: {
     fontSize: 23,
     fontWeight: '500',
-    color: colors.green,
     marginLeft: 10,
   },
   txtAge: {
@@ -99,15 +106,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   txtBodyTitleDescription: {
-    color: colors.white,
-    fontSize: 17,
+    fontFamily: 'Roboto',
+    fontSize: 11,
     fontWeight: 'bold',
+    color: colors.dark,
     width: 50,
   },
   txtBodyDescription: {
-    color: colors.white,
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    fontSize: 11,
+    fontWeight: '100',
+    color: colors.primaryDark,
   },
 });
 

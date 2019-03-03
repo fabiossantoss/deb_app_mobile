@@ -41,8 +41,9 @@ class SignUp extends Component {
     }
   }
 
-  goBack = () => {
-    this.props.navigation.goBack();
+  goBack = async () => {
+    await this.props.changeLoading(false);
+    await this.props.navigation.goBack();
   };
 
   signUp = async () => {
