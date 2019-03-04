@@ -27,8 +27,8 @@ const createNavigator = (isLogged = false) => createStackNavigator(
       tabBarOptions: {
         showLabel: false,
         activeTintColor: colors.white,
-        inactiveBackgroundColor: colors.secundaryDark,
-        style: { backgroundColor: colors.green },
+        inactiveBackgroundColor: colors.secundary,
+        style: { backgroundColor: colors.yellow },
       },
     }),
     SignUp: { screen: SignUp },

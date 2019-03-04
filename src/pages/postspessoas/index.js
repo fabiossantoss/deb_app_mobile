@@ -30,7 +30,6 @@ class PostsPessoas extends Component {
   };
 
   componentDidMount() {
-    console.tron.log('passei no pessoas');
     this.props.getPostsPessoas();
   }
 
@@ -38,7 +37,7 @@ class PostsPessoas extends Component {
     const { loading , posts } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor={colors.green} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.yellow} barStyle="light-content" />
         {loading && (
           <View>
             <FeedFake />

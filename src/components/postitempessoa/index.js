@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  View, Image, Text, TouchableOpacity,
+} from 'react-native';
 
 import styles from './styles';
 
@@ -39,8 +39,7 @@ const PostItemPessoa = ({ data, nav }) => {
         </View>
         <View style={styles.dateArea}>
           <View style={styles.postdate}>
-            <Icon name="hour" size={15} color="#000" />
-            <Text>{moment(data.created_at).format('DD/MM/YYYY h:mm')}</Text>
+            <Text style={styles.txtDate}>{moment(data.created_at).format('DD/MM/YYYY h:mm')}</Text>
           </View>
         </View>
       </View>
@@ -57,16 +56,18 @@ const PostItemPessoa = ({ data, nav }) => {
         <Text style={styles.txtName}>{data.pessoa.name}</Text>
       </View>
       <View style={styles.feedBody}>
-        <Image style={styles.imgBoddy} resizeMode="contain" source={{ uri: imgBoddy }} />
+        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
       </View>
       <View style={styles.feedFooter}>
-        <View style={styles.alertContainer}>
-          <Text>{'<3'}</Text>
-        </View>
-        <View style={styles.commentContainer}>
-          <Text>{data.comments.length}</Text>
-        </View>
+        <TouchableOpacity style={styles.commentContainer}>
+          <Image source={require('../../assets/alert2.png')} style={{ width: 25, height: 25 }} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.commentContainer}>
+          <Image source={require('../../assets/comments.png')} style={{ width: 25, height: 25 }} />
+          <Text style={{ marginLeft: 5 }}>{data.comments.length}</Text>
+        </TouchableOpacity>
       </View>
+      <View style={styles.divider} />
     </View>
   );
 };

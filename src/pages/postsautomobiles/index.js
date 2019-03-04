@@ -38,7 +38,7 @@ class PostsAutomobiles extends Component {
     const { loading , posts } = this.props;
     return (
       <View style={styles.container}>
-      <StatusBar backgroundColor={colors.green} barStyle="light-content" />
+      <StatusBar backgroundColor={colors.yellow} barStyle="light-content" />
         {loading && (
           <View>
             <FeedFake />
