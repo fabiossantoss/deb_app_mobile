@@ -33,6 +33,24 @@ class PostsPessoas extends Component {
     this.props.getPostsPessoas();
   }
 
+  profile = async (data) => {
+    this.props.navigation.navigate('Profile', {
+      id: data,
+    });
+  }
+
+  detail = async (data) => {
+    alert('detail');
+  }
+
+  comment = async (data) => {
+    alert('comment');
+  }
+
+  information = async (data) => {
+    alert('information');
+  }
+
   render() {
     const { loading , posts } = this.props;
     return (
@@ -45,16 +63,24 @@ class PostsPessoas extends Component {
           </View>
         )
         }
-        {(!loading && posts.length == 0 ) && 
-        <View style={styles.postNull}>
-          <Text style={styles.textpostnull}>Nenhuma postagem encontrada :(</Text>
-        </View>}
-
+        {
+          (!loading && posts.length == 0 ) && 
+            <View style={styles.postNull}>
+              <Text style={styles.textpostnull}>Nenhuma postagem encontrada :(</Text>
+            </View>
+        }
         {(!loading && posts.length > 0 ) &&
           <FlatList
             data={posts}
             keyExtractor={(item) => item.id}
-            renderItem={({item})=> <PostItemPessoa data={item} nav={this.props.navigation} />}
+            renderItem={({item})=> 
+            <PostItemPessoa 
+                data={item} 
+                nav={this.props.navigation} 
+                profile={this.profile} 
+                detail={this.detail} 
+                information={this.information} 
+                comment={this.comment} />}
             style={styles.posts}
           />          
         }
