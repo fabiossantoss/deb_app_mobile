@@ -6,7 +6,7 @@ import { Creators as PostActions } from 'store/ducks/posts';
 
 import FeedFake from 'components/postFake';
 import PostItemPessoa from 'components/postitempessoa';
- 
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { connect } from 'react-redux';
@@ -44,7 +44,10 @@ class PostsPessoas extends Component {
   }
 
   comment = async (data) => {
-    alert('comment');
+    //validar quantidade de comments data.comments
+    this.props.navigation.navigate('Comments', {
+      data,
+    });
   }
 
   information = async (data) => {
@@ -64,7 +67,7 @@ class PostsPessoas extends Component {
         )
         }
         {
-          (!loading && posts.length == 0 ) && 
+          (!loading && posts.length == 0 ) &&
             <View style={styles.postNull}>
               <Text style={styles.textpostnull}>Nenhuma postagem encontrada :(</Text>
             </View>
@@ -73,16 +76,16 @@ class PostsPessoas extends Component {
           <FlatList
             data={posts}
             keyExtractor={(item) => item.id}
-            renderItem={({item})=> 
-            <PostItemPessoa 
-                data={item} 
-                nav={this.props.navigation} 
-                profile={this.profile} 
-                detail={this.detail} 
-                information={this.information} 
+            renderItem={({item})=>
+            <PostItemPessoa
+                data={item}
+                nav={this.props.navigation}
+                profile={this.profile}
+                detail={this.detail}
+                information={this.information}
                 comment={this.comment} />}
             style={styles.posts}
-          />          
+          />
         }
       </View>
     );

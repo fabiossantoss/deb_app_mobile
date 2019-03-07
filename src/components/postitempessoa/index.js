@@ -64,7 +64,7 @@ const PostItemPessoa = ({
         <TouchableOpacity onPress={() => information(data.id)} style={styles.commentContainer}>
           <Image source={require('../../assets/alert2.png')} style={{ width: 25, height: 25 }} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => comment(data.id)} style={styles.commentContainer}>
+        <TouchableOpacity onPress={() => comment(data)} style={styles.commentContainer}>
           <Image source={require('../../assets/comments.png')} style={{ width: 25, height: 25 }} />
           <Text style={{ marginLeft: 5 }}>{data.comments.length}</Text>
         </TouchableOpacity>

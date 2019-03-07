@@ -8,6 +8,7 @@ import Explore from 'pages/explore';
 import Profile from 'pages/profile';
 import SignUp from 'pages/signup';
 import PostsPessoas from 'pages/postspessoas';
+import Comments from 'pages/comments';
 import PostsAutomobile from 'pages/postsautomobiles';
 
 
@@ -18,7 +19,7 @@ const createNavigator = (isLogged = false) => createStackNavigator(
       PostsPessoas: { screen: PostsPessoas },
       PostsAutomobile: { screen: PostsAutomobile },
       Explore: { screen: Explore },
-      Profile: { screen: Profile },
+      ProfilePosts: { screen: Profile },
     },
     {
       navigationOptions: {
@@ -32,6 +33,8 @@ const createNavigator = (isLogged = false) => createStackNavigator(
       },
     }),
     SignUp: { screen: SignUp },
+    Profile: { screen: Profile },
+    Comments: {screen: Comments },
   },
   {
     initialRouteName: isLogged ? 'TabNavigator' : 'SignIn',
