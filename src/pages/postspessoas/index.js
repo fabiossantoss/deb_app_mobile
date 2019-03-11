@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, StatusBar, Text, FlatList } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { Creators as PostActions } from 'store/ducks/posts';
+import { Creators as CommentActions } from 'store/ducks/comments';
 
 import FeedFake from 'components/postFake';
 import PostItemPessoa from 'components/postitempessoa';
@@ -29,8 +30,8 @@ class PostsPessoas extends Component {
     },
   };
 
-  componentDidMount() {
-    this.props.getPostsPessoas();
+  async componentDidMount() {
+    await this.props.getPostsPessoas();
   }
 
   profile = async (data) => {
@@ -44,10 +45,8 @@ class PostsPessoas extends Component {
   }
 
   comment = async (data) => {
-    //validar quantidade de comments data.comments
-    this.props.navigation.navigate('Comments', {
-      data,
-    });
+    await this.props.setComments(data.comments);
+    await this.props.navigation.navigate('Comments');
   }
 
   information = async (data) => {
@@ -85,7 +84,7 @@ class PostsPessoas extends Component {
                 information={this.information}
                 comment={this.comment} />}
             style={styles.posts}
-          />
+          />         
         }
       </View>
     );
@@ -98,7 +97,7 @@ const mapStateToProps = state => ({
   loading: state.posts.loading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(PostActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...PostActions, ...CommentActions }, dispatch);
 
 export default connect(
   mapStateToProps,

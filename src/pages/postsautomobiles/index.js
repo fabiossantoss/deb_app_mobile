@@ -57,8 +57,7 @@ class PostsAutomobiles extends Component {
             keyExtractor={(item) => item.id}
             renderItem={({item})=> <PostItemAutomobile data={item} nav={this.props.navigation} />}
             style={styles.posts}
-          />
-          
+          />       
         }
       </View>
     );

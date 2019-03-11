@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
 import sagaPlugin from 'reactotron-redux-saga';
 
-const tron = Reactotron.configure({ name: 'DebAPP', host: '192.168.90.10' })
+const tron = Reactotron.configure({ name: 'DebAPP', host: '192.168.128.2' })
   .useReactNative()
   .use(reactotronRedux())
   .use(sagaPlugin())
