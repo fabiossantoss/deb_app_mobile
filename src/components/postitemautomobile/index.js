@@ -10,26 +10,32 @@ const moment = require('moment');
 moment.locale('pt-BR');
 
 const PostItemAutomobile = ({ data, nav }) => {
-  const avatarProfileUrl = data.user.file.length > 0 ? data.user.file[0].url : '';
+  const imgProfile = data.user.file.url ? data.user.file.url : '';
+  console.tron.log(`profile: ${imgProfile}`);
   const imgBoddy = data.automobile.files.length > 0 ? data.automobile.files[0].url : '';
   const dateInfo = [
     {
+      id: 0,
       title: 'LOCAL',
       content: data.automobile.location_of_theft,
     },
     {
+      id: 1,
       title: 'DATA',
       content: moment(data.automobile.date_of_theft).format('DD/MM/YYYY'),
     },
     {
+      id: 2,
       title: 'PLACA',
       content: data.automobile.plate,
     },
     {
+      id: 3,
       title: 'ANO',
       content: data.automobile.year,
     },
     {
+      id: 4,
       title: 'MODELO',
       content: `${data.automobile.brand} - ${data.automobile.model}`,
     },
@@ -39,7 +45,7 @@ const PostItemAutomobile = ({ data, nav }) => {
     <View style={styles.container}>
       <View style={styles.feedHeader}>
         <View style={styles.avatar}>
-          <Image style={styles.imgAvatar} source={{ uri: avatarProfileUrl }} />
+          <Image resizeMethod="resize" style={styles.imgAvatar} source={{ uri: imgProfile }} />
         </View>
         <View style={styles.username}>
           <Text style={styles.txtUserName}>{data.user.username}</Text>
@@ -54,7 +60,7 @@ const PostItemAutomobile = ({ data, nav }) => {
       <View style={styles.descriptionArea}>
         <Text style={styles.txtInfo}>INFORMAÇÕES DO ROUBO/FURTO</Text>
         {dateInfo.map(item => (
-          <View style={styles.bodyDescription}>
+          <View key={item.id} style={styles.bodyDescription}>
             <Text style={styles.txtBodyTitleDescription}>{item.title}</Text>
             <Text style={styles.txtBodyDescription}>{item.content}</Text>
           </View>
@@ -64,7 +70,7 @@ const PostItemAutomobile = ({ data, nav }) => {
         <Text style={styles.txtName}>{data.automobile.title}</Text>
       </View>
       <View style={styles.feedBody}>
-        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
+        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgProfile }} />
       </View>
       <View style={styles.feedFooter}>
         <TouchableOpacity style={styles.commentContainer}>

@@ -54,7 +54,7 @@ class PostsAutomobiles extends Component {
         {(!loading && posts.length > 0 ) &&
           <FlatList
             data={posts}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => String(item.id)}
             renderItem={({item})=> <PostItemAutomobile data={item} nav={this.props.navigation} />}
             style={styles.posts}
           />       

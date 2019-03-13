@@ -12,19 +12,23 @@ moment.locale('pt-BR');
 const PostItemPessoa = ({
   data, profile, comment, information, detail,
 }) => {
-  const avatarProfileUrl = data.user.file.length > 0 ? data.user.file[0].url : '';
+  const imgProfile = data.user.file.url ? data.user.file.url : '';
+  console.tron.log(`profile: ${imgProfile}`);
   const imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
   const age = `${moment().diff(data.pessoa.birth_date, 'years')} ANOS`;
   const dateInfo = [
     {
+      id: 0,
       title: 'LOCAL',
       content: `${data.pessoa.city} - ${data.pessoa.uf}`.toLocaleUpperCase(),
     },
     {
+      id: 1,
       title: 'DATA',
       content: moment(data.pessoa.date_disappearance).format('DD/MM/YYYY'),
     },
     {
+      id: 2,
       title: 'IDADE',
       content: age,
     },
@@ -34,7 +38,7 @@ const PostItemPessoa = ({
     <View style={styles.container}>
       <View style={styles.feedHeader}>
         <TouchableOpacity onPress={() => profile(data.id)} style={styles.avatar}>
-          <Image resizeMode="stretch" style={styles.imgAvatar} source={{ uri: avatarProfileUrl }} />
+          <Image resizeMode="cover" style={styles.imgAvatar} source={{ uri: imgProfile }} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => profile(data.id)} style={styles.username}>
           <Text style={styles.txtUserName}>{data.user.username}</Text>
@@ -48,7 +52,7 @@ const PostItemPessoa = ({
       <TouchableOpacity onPress={() => detail(data.id)} style={styles.descriptionArea}>
         <Text style={styles.txtInfo}>INFORMAÇÕES DO DESAPARECIMENTO</Text>
         {dateInfo.map(item => (
-          <View style={styles.bodyDescription}>
+          <View key={item.id} style={styles.bodyDescription}>
             <Text style={styles.txtBodyTitleDescription}>{item.title}</Text>
             <Text style={styles.txtBodyDescription}>{item.content}</Text>
           </View>

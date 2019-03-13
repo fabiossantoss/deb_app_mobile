@@ -71,18 +71,19 @@ class PostsPessoas extends Component {
               <Text style={styles.textpostnull}>Nenhuma postagem encontrada :(</Text>
             </View>
         }
-        {(!loading && posts.length > 0 ) &&
-          <FlatList
-            data={posts}
-            keyExtractor={(item) => item.id}
-            renderItem={({item})=>
-            <PostItemPessoa
-                data={item}
-                nav={this.props.navigation}
-                profile={this.profile}
-                detail={this.detail}
-                information={this.information}
-                comment={this.comment} />}
+        {(!loading && posts.length > 0) 
+        && <FlatList
+              data={posts}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({item})=>
+              <PostItemPessoa
+                  data={item}
+                  nav={this.props.navigation}
+                  profile={this.profile}
+                  detail={this.detail}
+                  information={this.information}
+                  comment={this.comment} />
+              }
             style={styles.posts}
           />         
         }
