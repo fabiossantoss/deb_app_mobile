@@ -12,13 +12,11 @@ import CommentsArea from 'components/commentsarea';
 
 class Comments extends Component {
   render() {
-    console.tron.clear();
-    console.tron.log(this.props);
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           data={this.props.comments}
-          keyExtractor={item => item.id}
+          keyExtractor={item => String(item.id)}
           style={{ flex: 1 }}
           renderItem={({ item }) => <CommentItem nav={this.props.navigation} data={item} />}
         />

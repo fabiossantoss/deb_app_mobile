@@ -2,17 +2,17 @@ import React from 'react';
 
 import { View, Text, Image } from 'react-native';
 
+import styles from './styles';
+
 const CommentItem = ({ data }) => {
   console.tron.log(data.user.file.url);
-  const { imgUrl } = data.user.file.url;
   return (
-    <View style={{ flex: 1 }}>
-      <Image source={{ uri: imgUrl }} style={{ width: 60, height: 60 }} />
-      <Text>
-        User:
-        {data.user.username}
-      </Text>
-      <Text>{data.comment}</Text>
+    <View style={styles.container}>
+      <Image source={{ uri: data.user.file.url }} style={styles.imgAvatar} />
+      <View style={styles.comment}>
+        <Text style={styles.username}>{data.user.username}</Text>
+        <Text style={styles.commenttext}>{data.comment}</Text>
+      </View>
     </View>
   );
 };

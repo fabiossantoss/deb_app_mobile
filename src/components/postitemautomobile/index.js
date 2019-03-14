@@ -11,7 +11,6 @@ moment.locale('pt-BR');
 
 const PostItemAutomobile = ({ data, nav }) => {
   const imgProfile = data.user.file.url ? data.user.file.url : '';
-  console.tron.log(`profile: ${imgProfile}`);
   const imgBoddy = data.automobile.files.length > 0 ? data.automobile.files[0].url : '';
   const dateInfo = [
     {
@@ -70,7 +69,7 @@ const PostItemAutomobile = ({ data, nav }) => {
         <Text style={styles.txtName}>{data.automobile.title}</Text>
       </View>
       <View style={styles.feedBody}>
-        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgProfile }} />
+        <Image style={styles.imgBoddy} resizeMode="cover" source={{ uri: imgBoddy }} />
       </View>
       <View style={styles.feedFooter}>
         <TouchableOpacity style={styles.commentContainer}>

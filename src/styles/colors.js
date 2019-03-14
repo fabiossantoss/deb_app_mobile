@@ -1,8 +1,9 @@
 import Colors from 'color';
 
 export default {
-  grayligth: '#AAC3BE',
-  black: '#4B4F4E',
+  grayligth: '#e9e9e9',
+  blackGray: '#4B4F4E',
+  black: '#000',
   yellow: '#F2990F',
   primary: '#ECE9DE',
   white: '#F0F4F3',

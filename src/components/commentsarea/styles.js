@@ -1,13 +1,28 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from 'styles';
+
 const styles = StyleSheet.create({
   container: {
-    height: 40,
-    backgroundColor: '#cdaa',
+    backgroundColor: colors.grayligth,
+    borderRadius: 15,
+    flexDirection: 'row',
+    height: 50,
     margin: 10,
+    maxHeight: 120,
+    justifyContent: 'center',
+  },
+  divider: {
+    backgroundColor: colors.black,
+    height: 1,
+    marginHorizontal: 2,
+    opacity: 0.6,
   },
   input: {
-    margin: 5,
+    flex: 1,
+    height: 45,
+    marginHorizontal: 5,
+    padding: 10,
   },
 });
 

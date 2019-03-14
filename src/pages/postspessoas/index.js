@@ -41,11 +41,11 @@ class PostsPessoas extends Component {
   }
 
   detail = async (data) => {
-    alert('detail');
+    console.tron.log(this.props)
   }
 
-  comment = async (data) => {
-    await this.props.setComments(data.comments);
+  comment = async (data, postId) => {
+    await this.props.setComments(data, postId);
     await this.props.navigation.navigate('Comments');
   }
 
