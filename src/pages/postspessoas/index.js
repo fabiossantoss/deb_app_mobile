@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import { View, StatusBar, Text, FlatList } from 'react-native';
+import { View, StatusBar, Text, FlatList, AsyncStorage } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { Creators as PostActions } from 'store/ducks/posts';
-import { Creators as CommentActions } from 'store/ducks/comments';
+import { Creators as AuthActions } from 'store/ducks/auth';
+import { Creators as CommentsActions } from 'store/ducks/comments';
 
 import FeedFake from 'components/postFake';
 import PostItemPessoa from 'components/postitempessoa';
@@ -31,6 +32,14 @@ class PostsPessoas extends Component {
   };
 
   async componentDidMount() {
+
+    const token = await AsyncStorage.getItem('@DebApp:token');
+    const email = await AsyncStorage.getItem('@DebApp:email');
+    const id = await AsyncStorage.getItem('@DebApp:id');
+    const username = await AsyncStorage.getItem('@DebApp:username');
+
+    this.props.loginSuccess(username, email, token, id, '');
+
     await this.props.getPostsPessoas();
   }
 
@@ -41,16 +50,21 @@ class PostsPessoas extends Component {
   }
 
   detail = async (data) => {
-    console.tron.log(this.props)
+    console.tron.log(this.props);
   }
 
-  comment = async (data, postId) => {
-    await this.props.setComments(data, postId);
-    await this.props.navigation.navigate('Comments');
+  comment = async (postId) => {
+    this.props.getCommentsSuccess([]);
+    await this.props.navigation.navigate('Comments' , {
+      postId,
+    });
   }
 
   information = async (data) => {
     alert('information');
+  }
+
+  paginate = async () => {
   }
 
   render() {
@@ -71,10 +85,12 @@ class PostsPessoas extends Component {
               <Text style={styles.textpostnull}>Nenhuma postagem encontrada :(</Text>
             </View>
         }
-        {(!loading && posts.length > 0) 
+        {(!loading && posts.length > 0)
         && <FlatList
               data={posts}
               keyExtractor={(item) => String(item.id)}
+              onEndReachedThreshold={0.5}
+              onEndReached={this.paginate}
               renderItem={({item})=>
               <PostItemPessoa
                   data={item}
@@ -85,7 +101,7 @@ class PostsPessoas extends Component {
                   comment={this.comment} />
               }
             style={styles.posts}
-          />         
+          />
         }
       </View>
     );
@@ -98,7 +114,7 @@ const mapStateToProps = state => ({
   loading: state.posts.loading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...PostActions, ...CommentActions }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...PostActions, ...AuthActions, ...CommentsActions }, dispatch);
 
 export default connect(
   mapStateToProps,

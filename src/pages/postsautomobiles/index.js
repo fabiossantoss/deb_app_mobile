@@ -30,7 +30,6 @@ class PostsAutomobiles extends Component {
   };
 
   componentDidMount() {
-    console.tron.log('passei no auto');
     this.props.getPostsAutomobiles();
   }
 

@@ -16,8 +16,6 @@ export function* login(action) {
       if (response.data.user.file.length > 0) {
         fileUrl = response.data.user.file[0].url;
       }
-
-      console.tron.log(response.data);
       yield put(
         LoginActions.loginSuccess(
           response.data.user.username,
@@ -115,8 +113,7 @@ export function* newUser(action) {
       if (response.data.user.file.length > 0) {
         fileUrl = response.data.user.file[0].url;
       }
-
-      console.tron.log(response.data);
+      
       yield put(
         LoginActions.loginSuccess(
           response.data.user.username,

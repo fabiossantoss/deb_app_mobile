@@ -3,8 +3,6 @@ import {
   View, Image, Text, TouchableOpacity,
 } from 'react-native';
 
-import ImgRounded from 'components/imgrounded';
-
 import styles from './styles';
 
 const moment = require('moment');
@@ -15,7 +13,6 @@ const PostItemPessoa = ({
   data, profile, comment, information, detail,
 }) => {
   const imgProfile = data.user.file.url ? data.user.file.url : '';
-  console.tron.log(`profile: ${imgProfile}`);
   const imgBoddy = data.pessoa.files.length > 0 ? data.pessoa.files[0].url : '';
   const age = `${moment().diff(data.pessoa.birth_date, 'years')} ANOS`;
   const dateInfo = [
@@ -70,7 +67,10 @@ const PostItemPessoa = ({
         <TouchableOpacity onPress={() => information(data.id)} style={styles.commentContainer}>
           <Image source={require('../../assets/alert2.png')} style={{ width: 25, height: 25 }} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => comment(data.comments, data.id)} style={styles.commentContainer}>
+        <TouchableOpacity
+          onPress={() => comment(data.id)}
+          style={styles.commentContainer}
+        >
           <Image source={require('../../assets/comments.png')} style={{ width: 25, height: 25 }} />
           <Text style={{ marginLeft: 5 }}>{data.comments.length}</Text>
         </TouchableOpacity>

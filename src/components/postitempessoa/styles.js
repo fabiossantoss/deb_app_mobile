@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
   viewName: {
     alignItems: 'center',
     flexDirection: 'row',
-    height: 30,
     justifyContent: 'flex-start',
     width: '100%',
   },

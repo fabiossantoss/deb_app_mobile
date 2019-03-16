@@ -10,24 +10,21 @@ import { colors } from 'styles';
 import styles from './styles';
 
 class Profile extends Component {
-
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => <Icon name="user" size={20} color={tintColor} />,
   };
 
   state = {
     id: this.props.navigation.getParam('id'),
-  }
+  };
 
   render() {
     const { navigation } = this.props;
-    console.tron.log(navigation.getParam('data'));
-    
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor={colors.green} barStyle="light-content" />
 
-        <Text>{"PROFILE :" + this.state.id}</Text>
+        <Text>{`PROFILE :${this.state.id}`}</Text>
       </View>
     );
   }
