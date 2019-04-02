@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { View, StatusBar, Text, FlatList, AsyncStorage } from 'react-native';
+import { FloatingAction } from 'react-native-floating-action';
 import { bindActionCreators } from 'redux';
 import { Creators as PostActions } from 'store/ducks/posts';
 import { Creators as AuthActions } from 'store/ducks/auth';
@@ -16,6 +17,18 @@ import { connect } from 'react-redux';
 import { colors } from 'styles';
 
 import styles from './styles';
+
+const actions = [{
+  text: 'Pessoa',
+  // icon: require('./images/ic_accessibility_white.png'),
+  name: 'bt_people',
+  position: 1,
+}, {
+  text: 'Carro',
+  // icon: require('./images/ic_language_white.png'),
+  name: 'bt_car',
+  position: 2,
+}];
 
 class PostsPessoas extends Component {
   static navigationOptions = {
@@ -103,6 +116,17 @@ class PostsPessoas extends Component {
             style={styles.posts}
           />
         }
+        <FloatingAction
+          actions={actions}
+          position="right"
+          showBackground={true}
+          color="#0DD"
+          onPressItem={
+          (name) => {
+            console.log(`selected button: ${name}`);
+          }
+        }
+        />
       </View>
     );
   }
