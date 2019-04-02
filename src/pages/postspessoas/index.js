@@ -19,15 +19,17 @@ import { colors } from 'styles';
 import styles from './styles';
 
 const actions = [{
+  color: '#F2990F',
   text: 'Pessoa',
-  // icon: require('./images/ic_accessibility_white.png'),
-  name: 'bt_people',
-  position: 1,
-}, {
-  text: 'Carro',
-  // icon: require('./images/ic_language_white.png'),
-  name: 'bt_car',
+  icon: require('../../assets/people_icon.png'),
+  name: 'bt_people',  
   position: 2,
+}, {
+  color: '#F2990F',
+  text: 'Automóvel',
+  icon: require('../../assets/car_icon.png'),
+  name: 'bt_car',
+  position: 1,
 }];
 
 class PostsPessoas extends Component {
@@ -120,10 +122,14 @@ class PostsPessoas extends Component {
           actions={actions}
           position="right"
           showBackground={true}
-          color="#0DD"
+          color="#F2990F"
           onPressItem={
           (name) => {
-            console.log(`selected button: ${name}`);
+            if (name === "bt_people") {
+              this.props.navigation.navigate('RegisterPeople');
+            } else if (name === "bt_car") {
+              this.props.navigation.navigate('RegisterAutomobile');
+            }
           }
         }
         />
