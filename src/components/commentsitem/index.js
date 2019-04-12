@@ -1,12 +1,12 @@
-import React from 'react';
-
 import {
   View, Text, Image, TouchableOpacity,
 } from 'react-native';
+import React from './node_modules/react';
+
 
 import styles from './styles';
 
-const moment = require('moment');
+const moment = require('./node_modules/moment');
 
 const CommentItem = ({ data, deletecomment }) => (
   <View>
