@@ -4,17 +4,15 @@ import { colors, metrics } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.white,
     flex: 1,
   },
   data: {
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   textdata: {
-    flex: 1,
-    color: colors.white,
+    color: colors.secundary,
     fontSize: 15,
     fontWeight: 'bold',
     fontFamily: 'Devil Breeze Bold',
@@ -22,12 +20,12 @@ const styles = StyleSheet.create({
     height: 30,
   },
   textInput: {
-    backgroundColor: colors.blackGray,
-    borderColor: colors.white,
-    borderRadius: metrics.baseRadius,
-    color: colors.white,
+    // backgroundColor: colors.blackGray,
+    // borderColor: colors.white,
+    // borderRadius: metrics.baseRadius,
+    // color: colors.white,
     fontSize: 14,
-    height: 40,
+    height: 60,
     marginBottom: 10,
     marginRight: 5,
     textAlign: 'center',
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    color: colors.white,
+    color: colors.secundary,
     fontSize: 22,
     fontWeight: 'bold',
     fontFamily: 'Devil Breeze Bold',
